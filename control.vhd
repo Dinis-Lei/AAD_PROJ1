@@ -4,14 +4,14 @@ USE ieee.std_logic_arith.all;
 USE ieee.std_logic_unsigned.all;
 
 ENTITY contMem IS
-  PORT (add:  IN STD_LOGIC_VECTOR (5 DOWNTO 0);
+  PORT (add:  IN STD_LOGIC_VECTOR (4 DOWNTO 0);
         dOut: OUT STD_LOGIC_VECTOR (2 DOWNTO 0));
 END contMem;
 
 ARCHITECTURE behavior OF contMem IS
 BEGIN
   PROCESS (add)
-    TYPE CMem IS ARRAY(0 TO 63) OF STD_LOGIC_VECTOR (2 DOWNTO 0);
+    TYPE CMem IS ARRAY(0 TO 31) OF STD_LOGIC_VECTOR (2 DOWNTO 0);
     VARIABLE prog: CMem := (CONV_STD_LOGIC_VECTOR (16#7#, 3),  -- nRst = 1   nSetO = 1   nEnClk = 1   00
                             CONV_STD_LOGIC_VECTOR (16#5#, 3),  -- nRst = 1   nSetO = 0   nEnClk = 1   01
                             CONV_STD_LOGIC_VECTOR (16#7#, 3),  -- nRst = 1   nSetO = 1   nEnClk = 1   02
@@ -28,8 +28,8 @@ BEGIN
                             CONV_STD_LOGIC_VECTOR (16#7#, 3),  -- nRst = 1   nSetO = 1   nEnClk = 1   0d
                             CONV_STD_LOGIC_VECTOR (16#7#, 3),  -- nRst = 1   nSetO = 1   nEnClk = 1   0e
                             CONV_STD_LOGIC_VECTOR (16#7#, 3),  -- nRst = 1   nSetO = 1   nEnClk = 1   0f
-                            CONV_STD_LOGIC_VECTOR (16#7#, 3),  -- nRst = 1   nSetO = 1   nEnClk = 1   10
-                            CONV_STD_LOGIC_VECTOR (16#7#, 3),  -- nRst = 1   nSetO = 1   nEnClk = 1   11
+                            CONV_STD_LOGIC_VECTOR (16#6#, 3),  -- nRst = 1   nSetO = 1   nEnClk = 0   10
+                            CONV_STD_LOGIC_VECTOR (16#3#, 3),  -- nRst = 0   nSetO = 1   nEnClk = 1   11
                             CONV_STD_LOGIC_VECTOR (16#7#, 3),  -- nRst = 1   nSetO = 1   nEnClk = 1   12
                             CONV_STD_LOGIC_VECTOR (16#7#, 3),  -- nRst = 1   nSetO = 1   nEnClk = 1   13
                             CONV_STD_LOGIC_VECTOR (16#7#, 3),  -- nRst = 1   nSetO = 1   nEnClk = 1   14
@@ -43,39 +43,7 @@ BEGIN
                             CONV_STD_LOGIC_VECTOR (16#7#, 3),  -- nRst = 1   nSetO = 1   nEnClk = 1   1c
                             CONV_STD_LOGIC_VECTOR (16#7#, 3),  -- nRst = 1   nSetO = 1   nEnClk = 1   1d
                             CONV_STD_LOGIC_VECTOR (16#7#, 3),  -- nRst = 1   nSetO = 1   nEnClk = 1   1e
-                            CONV_STD_LOGIC_VECTOR (16#7#, 3),  -- nRst = 1   nSetO = 1   nEnClk = 1   1f
-                            CONV_STD_LOGIC_VECTOR (16#6#, 3),  -- nRst = 1   nSetO = 1   nEnClk = 0   20
-                            CONV_STD_LOGIC_VECTOR (16#3#, 3),  -- nRst = 0   nSetO = 1   nEnClk = 1   21
-                            CONV_STD_LOGIC_VECTOR (16#7#, 3),  -- nRst = 1   nSetO = 1   nEnClk = 1   22
-                            CONV_STD_LOGIC_VECTOR (16#7#, 3),  -- nRst = 1   nSetO = 1   nEnClk = 1   23
-                            CONV_STD_LOGIC_VECTOR (16#7#, 3),  -- nRst = 1   nSetO = 1   nEnClk = 1   24
-                            CONV_STD_LOGIC_VECTOR (16#7#, 3),  -- nRst = 1   nSetO = 1   nEnClk = 1   25
-                            CONV_STD_LOGIC_VECTOR (16#7#, 3),  -- nRst = 1   nSetO = 1   nEnClk = 1   26
-                            CONV_STD_LOGIC_VECTOR (16#7#, 3),  -- nRst = 1   nSetO = 1   nEnClk = 1   27
-                            CONV_STD_LOGIC_VECTOR (16#7#, 3),  -- nRst = 1   nSetO = 1   nEnClk = 1   28
-                            CONV_STD_LOGIC_VECTOR (16#7#, 3),  -- nRst = 1   nSetO = 1   nEnClk = 1   29
-                            CONV_STD_LOGIC_VECTOR (16#7#, 3),  -- nRst = 1   nSetO = 1   nEnClk = 1   2a
-                            CONV_STD_LOGIC_VECTOR (16#7#, 3),  -- nRst = 1   nSetO = 1   nEnClk = 1   2b
-                            CONV_STD_LOGIC_VECTOR (16#7#, 3),  -- nRst = 1   nSetO = 1   nEnClk = 1   2c
-                            CONV_STD_LOGIC_VECTOR (16#7#, 3),  -- nRst = 1   nSetO = 1   nEnClk = 1   2d
-                            CONV_STD_LOGIC_VECTOR (16#7#, 3),  -- nRst = 1   nSetO = 1   nEnClk = 1   2e
-                            CONV_STD_LOGIC_VECTOR (16#7#, 3),  -- nRst = 1   nSetO = 1   nEnClk = 1   2f
-                            CONV_STD_LOGIC_VECTOR (16#7#, 3),  -- nRst = 1   nSetO = 1   nEnClk = 1   30
-                            CONV_STD_LOGIC_VECTOR (16#7#, 3),  -- nRst = 1   nSetO = 1   nEnClk = 1   31
-                            CONV_STD_LOGIC_VECTOR (16#7#, 3),  -- nRst = 1   nSetO = 1   nEnClk = 1   32
-                            CONV_STD_LOGIC_VECTOR (16#7#, 3),  -- nRst = 1   nSetO = 1   nEnClk = 1   33
-                            CONV_STD_LOGIC_VECTOR (16#7#, 3),  -- nRst = 1   nSetO = 1   nEnClk = 1   34
-                            CONV_STD_LOGIC_VECTOR (16#7#, 3),  -- nRst = 1   nSetO = 1   nEnClk = 1   35
-                            CONV_STD_LOGIC_VECTOR (16#7#, 3),  -- nRst = 1   nSetO = 1   nEnClk = 1   36
-                            CONV_STD_LOGIC_VECTOR (16#7#, 3),  -- nRst = 1   nSetO = 1   nEnClk = 1   37
-                            CONV_STD_LOGIC_VECTOR (16#7#, 3),  -- nRst = 1   nSetO = 1   nEnClk = 1   38
-                            CONV_STD_LOGIC_VECTOR (16#7#, 3),  -- nRst = 1   nSetO = 1   nEnClk = 1   39
-                            CONV_STD_LOGIC_VECTOR (16#7#, 3),  -- nRst = 1   nSetO = 1   nEnClk = 1   3a
-                            CONV_STD_LOGIC_VECTOR (16#7#, 3),  -- nRst = 1   nSetO = 1   nEnClk = 1   3b
-                            CONV_STD_LOGIC_VECTOR (16#7#, 3),  -- nRst = 1   nSetO = 1   nEnClk = 1   3c
-                            CONV_STD_LOGIC_VECTOR (16#7#, 3),  -- nRst = 1   nSetO = 1   nEnClk = 1   3d
-                            CONV_STD_LOGIC_VECTOR (16#7#, 3),  -- nRst = 1   nSetO = 1   nEnClk = 1   3e
-                            CONV_STD_LOGIC_VECTOR (16#7#, 3)); -- nRst = 1   nSetO = 1   nEnClk = 1   3f
+                            CONV_STD_LOGIC_VECTOR (16#7#, 3)); -- nRst = 1   nSetO = 1   nEnClk = 1   1f
     VARIABLE pos: INTEGER;
   BEGIN
     pos := CONV_INTEGER (add);
@@ -92,7 +60,7 @@ USE simpleLogic.all;
 ENTITY control IS
   PORT (nGRst: IN STD_LOGIC;
         clk:   IN STD_LOGIC;
-        add:   IN STD_LOGIC_VECTOR (5 DOWNTO 0);
+        add:   IN STD_LOGIC_VECTOR (4 DOWNTO 0);
         nRst:  OUT STD_LOGIC;
         nSetO: OUT STD_LOGIC;
         clkO:  OUT STD_LOGIC);
@@ -102,7 +70,7 @@ ARCHITECTURE structure OF control IS
   SIGNAL cLines: STD_LOGIC_VECTOR (2 DOWNTO 0);
   SIGNAL iNRst, iNSetO: STD_LOGIC;
   COMPONENT contMem
-    PORT (add:  IN STD_LOGIC_VECTOR (5 DOWNTO 0);
+    PORT (add:  IN STD_LOGIC_VECTOR (4 DOWNTO 0);
           dOut: OUT STD_LOGIC_VECTOR (2 DOWNTO 0));
   END COMPONENT;
   COMPONENT gateNand2

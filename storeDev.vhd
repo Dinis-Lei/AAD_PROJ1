@@ -47,7 +47,7 @@ ARCHITECTURE structure OF binCounter_5bit IS
           y:      OUT STD_LOGIC);
   END COMPONENT;
   COMPONENT gateXor2
-    PORT (x1, x2: IN STD_LOGIC;
+    PORT (x0, x1: IN STD_LOGIC;
           y:      OUT STD_LOGIC);
   END COMPONENT;
   COMPONENT flipFlopDPET
