@@ -111,6 +111,50 @@ BEGIN
 	r0: 	type2 PORT MAP (iR1,	rOut);
 END structure;
 
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
 
+LIBRARY simpleLogic;
+USE simpleLogic.all;
+
+ENTITY divider_remainder IS
+  PORT (a:		IN STD_LOGIC_VECTOR (23 DOWNTO 0);
+        rOut:	OUT STD_LOGIC_VECTOR(7 DOWNTO 0));
+END divider_remainder;
+
+ARCHITECTURE structure OF divider_remainder IS
+	COMPONENT gateXor8
+    PORT (x: IN STD_LOGIC_VECTOR (7 DOWNTO 0);
+			 y:      OUT STD_LOGIC);
+	END COMPONENT;
+	
+	COMPONENT gateXor9
+    PORT (x: IN STD_LOGIC_VECTOR (8 DOWNTO 0);
+			 y:      OUT STD_LOGIC);
+	END COMPONENT;
+	
+	COMPONENT gateXor11
+    PORT (x: IN STD_LOGIC_VECTOR (10 DOWNTO 0);
+			 y:      OUT STD_LOGIC);
+	END COMPONENT;
+  
+BEGIN
+	x7: gateXor8  PORT MAP (a(7) & a(8) & a(9) & a(11) & a(13) & a(15) & a(20) & a(21), 
+								  rOut(7));
+	x6: gateXor11 PORT MAP (a(6) & a(9) & a(10) & a(11) & a(12) & a(13) & a(14) & a(15) & a(19) & a(21) & a(23),
+									rOut(6));
+	x5: gateXor11 PORT MAP (a(5) & a(8) & a(9) & a(10) & a(11) & a(12) & a(13) & a(14) & a(18) & a(20) & a(22),
+									rOut(5));
+	x4: gateXor8  PORT MAP (a(4) & a(10) & a(12) & a(15) & a(17) & a(19) & a(20) & a(23),
+									rOut(4));
+	x3: gateXor8  PORT MAP (a(3) & a(9) & a(11) & a(14) & a(16) & a(18) & a(19) & a(22),
+									rOut(3));
+	x2: gateXor8  PORT MAP (a(2) & a(8) & a(10) & a(13) & a(15) & a(17) & a(18) & a(21),
+									rOut(2));
+	x1: gateXor11 PORT MAP (a(1) & a(8) & a(11) & a(12) & a(13) & a(14) & a(15) & a(16) & a(17) & a(21) & a(23),
+									rOut(1));
+	x0: gateXor9  PORT MAP (a(0) & a(8) & a(9) & a(10) & a(12) & a(14) & a(16) & a(21) & a(22),
+									rOut(0));
+END structure;
 
 
